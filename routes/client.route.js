@@ -7,10 +7,10 @@ router.post("/", ClientController.createClient)
 
 router.get("/", ClientController.getClients)
 
-router.get("/:client_id", ClientController.getClient)
+router.get("/:clientId", ClientController.getClient)
 
 router.put("/", ClientController.updateClient)
 
-router.delete("/:client_id", ClientController.deleteClient)
+router.delete("/:clientId", ClientController.deleteClient)
 
 export default router;

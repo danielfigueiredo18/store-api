@@ -7,10 +7,10 @@ router.post("/", SupplierController.createSupplier)
 
 router.get("/", SupplierController.getSuppliers)
 
-router.get("/:supplier_id", SupplierController.getSupplier)
+router.get("/:supplierId", SupplierController.getSupplier)
 
 router.put("/", SupplierController.updateSupplier)
 
-router.delete("/:supplier_id", SupplierController.deleteSupplier)
+router.delete("/:supplierId", SupplierController.deleteSupplier)
 
 export default router;

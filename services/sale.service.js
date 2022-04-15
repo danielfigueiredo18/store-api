@@ -4,12 +4,12 @@ import ProductRepository from "../repositories/product.repository.js";
 
 async function createSale(sale){
     let error = "";
-    let product = await ProductRepository.getProduct(sale.product_id);
-    if(!await ClientRepository.getClient(sale.client_id)){
-        error = "O client_id informado não existe.";
+    let product = await ProductRepository.getProduct(sale.productId);
+    if(!await ClientRepository.getClient(sale.clientId)){
+        error = "O clientId informado não existe.";
     }
     if(!product){
-        error += "O product_id informado não existe.";
+        error += "O productId informado não existe.";
     }
     if(error){
         throw new Error(error);
@@ -24,25 +24,28 @@ async function createSale(sale){
     }
 }
 
-async function getSales(product_id){
-    if(product_id){
-        return await SaleRepository.getSalesByProductId(product_id);
+async function getSales(productId, supplierId){
+    if(productId){
+        return await SaleRepository.getSalesByProductId(productId);
+    }
+    if(supplierId){
+        return await SaleRepository.getSalesBySupplierId(supplierId);
     }
     return await SaleRepository.getSales();
 }
 
-async function getSale(sale_id){
-    return await SaleRepository.getSale(sale_id);
+async function getSale(saleId){
+    return await SaleRepository.getSale(saleId);
 }
 
 async function updateSale(sale){
     let error = "";
-    let product = await ProductRepository.getProduct(sale.product_id);
-    if(!await ClientRepository.getClient(sale.client_id)){
-        error = "O client_id informado não existe.";
+    let product = await ProductRepository.getProduct(sale.productId);
+    if(!await ClientRepository.getClient(sale.clientId)){
+        error = "O clientId informado não existe.";
     }
     if(!product){
-        error += "O product_id informado não existe.";
+        error += "O productId informado não existe.";
     }
     if(error){
         throw new Error(error);
@@ -50,15 +53,15 @@ async function updateSale(sale){
     return await SaleRepository.updateSale(sale);
 }
 
-async function deleteSale(sale_id){
-    const sale = await SaleRepository.getSale(sale_id);
+async function deleteSale(saleId){
+    const sale = await SaleRepository.getSale(saleId);
     if(sale){
-        let product = await ProductRepository.getProduct(sale.product_id);
-        await SaleRepository.deleteSale(sale_id);
+        let product = await ProductRepository.getProduct(sale.productId);
+        await SaleRepository.deleteSale(saleId);
         product.stock++;
         await ProductRepository.updateProduct(product);
     }else{
-        throw new Error("O sale_id informado não existe.")
+        throw new Error("O saleId informado não existe.")
     }
 }
 

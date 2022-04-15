@@ -3,8 +3,8 @@ import ProductService from "../services/product.service.js";
 async function createProduct(req,res,next){
     try{
         let product = req.body;
-        if(!product.name || !product.description || !product.value || !product.stock || !product.supplier_id){
-            throw new Error("Name, Description, Value, Stock e Supplier_id são obrigatórios.")
+        if(!product.name || !product.description || !product.value || !product.stock || !product.supplierId){
+            throw new Error("Name, Description, Value, Stock e supplierId são obrigatórios.")
         }
         res.send(await ProductService.createProduct(product));
         logger.info(`POST /product - ${JSON.stringify(product)}`)
@@ -24,7 +24,7 @@ async function getProducts(req,res,next){
 
 async function getProduct(req,res,next){
     try{
-        res.send(await ProductService.getProduct(req.params.product_id));
+        res.send(await ProductService.getProduct(req.params.productId));
         logger.info("GET /product");
     }catch(err){
         next(err);
@@ -34,8 +34,8 @@ async function getProduct(req,res,next){
 async function updateProduct(req,res,next){
     try{
         let product = req.body;
-        if(!product.product_id || !product.name || !product.description || !product.value || !product.stock || !product.supplier_id){
-            throw new Error("Product_id, Name, Description, Value, Stock e Supplier_id são obrigatórios.")
+        if(!product.productId || !product.name || !product.description || !product.value || !product.stock || !product.supplierId){
+            throw new Error("Product_id, Name, Description, Value, Stock e supplierId são obrigatórios.")
         }
         res.send(await ProductService.updateProduct(product));
         logger.info(`PUT /product - ${JSON.stringify(product)}`)
@@ -46,7 +46,7 @@ async function updateProduct(req,res,next){
 
 async function deleteProduct(req,res,next){
     try{
-        await ProductService.deleteProduct(req.params.product_id);
+        await ProductService.deleteProduct(req.params.productId);
         res.end();
         logger.info("DELETE /product");
     }catch(err){

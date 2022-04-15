@@ -24,7 +24,7 @@ async function getClients(req,res,next){
 
 async function getClient(req,res,next){
     try{
-        res.send(await ClientService.getClient(req.params.client_id));
+        res.send(await ClientService.getClient(req.params.clientId));
         logger.info("GET /client");
     }catch(err){
         next(err);
@@ -34,7 +34,7 @@ async function getClient(req,res,next){
 async function updateClient(req,res,next){
     try{
         let client = req.body;
-        if(!client.client_id || !client.name || !client.cpf || !client.phone || !client.email || !client.address){
+        if(!client.clientId || !client.name || !client.cpf || !client.phone || !client.email || !client.address){
             throw new Error("Client_id, Name, CPF, Phone, Email e Address são obrigatórios.")
         }
         res.send(await ClientService.updateClient(client));
@@ -46,7 +46,7 @@ async function updateClient(req,res,next){
 
 async function deleteClient(req,res,next){
     try{
-        await ClientService.deleteClient(req.params.client_id);
+        await ClientService.deleteClient(req.params.clientId);
         res.end();
         logger.info("DELETE /client");
     }catch(err){

@@ -7,10 +7,10 @@ router.post("/", SaleController.createSale)
 
 router.get("/", SaleController.getSales)
 
-router.get("/:sale_id", SaleController.getSale)
+router.get("/:saleId", SaleController.getSale)
 
 router.put("/", SaleController.updateSale)
 
-router.delete("/:sale_id", SaleController.deleteSale)
+router.delete("/:saleId", SaleController.deleteSale)
 
 export default router;

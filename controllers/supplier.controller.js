@@ -24,7 +24,7 @@ async function getSuppliers(req,res,next){
 
 async function getSupplier(req,res,next){
     try{
-        res.send(await SupplierService.getSupplier(req.params.supplier_id));
+        res.send(await SupplierService.getSupplier(req.params.supplierId));
         logger.info("GET /supplier");
     }catch(err){
         next(err);
@@ -34,8 +34,8 @@ async function getSupplier(req,res,next){
 async function updateSupplier(req,res,next){
     try{
         let supplier = req.body;
-        if(!supplier.supplier_id || !supplier.name || !supplier.cnpj || !supplier.phone || !supplier.email || !supplier.address){
-            throw new Error("Supplier_id, Name, CPF, Phone, Email e Address são obrigatórios.")
+        if(!supplier.supplierId || !supplier.name || !supplier.cnpj || !supplier.phone || !supplier.email || !supplier.address){
+            throw new Error("supplierId, Name, CPF, Phone, Email e Address são obrigatórios.")
         }
         res.send(await SupplierService.updateSupplier(supplier));
         logger.info(`PUT /supplier - ${JSON.stringify(supplier)}`)

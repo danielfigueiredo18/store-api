@@ -7,10 +7,10 @@ router.post("/", ProductController.createProduct)
 
 router.get("/", ProductController.getProducts)
 
-router.get("/:product_id", ProductController.getProduct)
+router.get("/:productId", ProductController.getProduct)
 
 router.put("/", ProductController.updateProduct)
 
-router.delete("/:product_id", ProductController.deleteProduct)
+router.delete("/:productId", ProductController.deleteProduct)
 
 export default router;
